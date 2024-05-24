@@ -71,4 +71,4 @@ function juegoMayMen() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', juegoMayMen);
+juegoMayMen();

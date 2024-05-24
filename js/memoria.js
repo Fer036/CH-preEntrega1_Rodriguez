@@ -37,4 +37,4 @@ function memoriaNumeros() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', memoriaNumeros);
+memoriaNumeros()
