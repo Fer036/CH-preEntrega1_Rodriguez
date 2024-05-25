@@ -17,9 +17,15 @@ function memoriaNumeros() {
 
             alert('Ronda: ' + i + '.' + 'Secuencia: ' + secuencia);
             
-            const RESPUESTA = prompt('Ingresá la secuencia: ');
+            let respuesta = prompt('Ingresá la secuencia: ');
 
-            if (RESPUESTA === secuencia) {
+            // Valido si es un valor correcto lo que ingresa:
+            while (respuesta.length !==DIGITOS || isNaN(respuesta)) {
+                respuesta = prompt('Apa, ingresaste cualquier cosa. Ingresá una secuencia de 4 dígitos');
+            }
+
+            // Corroboro si gana o pierde
+            if (respuesta === secuencia) {
                 alert('Excelente, amigx!');
                 victorias++;
             } else {
