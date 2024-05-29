@@ -37,46 +37,43 @@ function actualizarResultado(RESULTADO) {
 }
 
 // Jueego:
-function jugar() {
-    puntajeJugador = 0;
-    puntajePc = 0;
-    const RONDAS = Number(prompt('¿Cuántas rondas te bancás?'));
 
-    // Se juega la cantridad de rondas que eligió el usuario
-    for (let i = 0; i < RONDAS; i++) {
-        let respuestaJugador = prompt('¿Piedra, papel o tijera?').toLowerCase();
+puntajeJugador = 0;
+puntajePc = 0;
+const RONDAS = Number(prompt('¿Cuántas rondas te bancás?'));
 
-        // Chequeo que ingrese un valor correcto
-        while (!OPCION.includes(respuestaJugador)) {
-            respuestaJugador = prompt('Sólo se puede elegir entre las opciones indicadas: piedra, papel o tijera').toLowerCase();
-        }
+// Se juega la cantridad de rondas que eligió el usuario
+for (let i = 0; i < RONDAS; i++) {
+    let respuestaJugador = prompt('¿Piedra, papel o tijera?').toLowerCase();
 
-        // Muestro mensaje de eleccion de pc y resultado de la ronda
-        const RESPUESTAPC = obtenerEleccionPC();
-        alert('La computadora eligió: ' + RESPUESTAPC);
-
-        const RESULTADO = jugarRonda(respuestaJugador, RESPUESTAPC);
-        alert(RESULTADO === 'Empate' ? 'Uff, eligieron lo mismo' : RESULTADO === 'Ganar' ? 'Zarpado, quién te conoce Cortana!' : 'Perdiste, sorry');
-
-        actualizarResultado(RESULTADO);
-        alert('Puntaje: Jugador: ' + puntajeJugador + ' | PC: ' + puntajePc);
+    // Chequeo que ingrese un valor correcto
+    while (!OPCION.includes(respuestaJugador)) {
+        respuestaJugador = prompt('Sólo se puede elegir entre las opciones indicadas: piedra, papel o tijera').toLowerCase();
     }
 
-    // Cómo termina el partido
-    if (puntajeJugador > puntajePc) {
-        alert('Si Siri estuviese acá, te cantaría una serenata. Ganaste!');
-    } else if (puntajeJugador === puntajePc) {
-        alert('Deportivo empate.');
-    } else {
-        alert('Estemm, te ganó la máquina');
-    }
+    // Muestro mensaje de eleccion de pc y resultado de la ronda
+    const RESPUESTAPC = obtenerEleccionPC();
+    alert('La computadora eligió: ' + RESPUESTAPC);
 
-    // Vovler a jugar sin refrescar la página. 
-    if (confirm('¿Hacemos otra vuelta?')) {
-        jugar();
-    } else {
-        alert('Gracias por jugar, nos vemos prontos.');
-    }
+    const RESULTADO = jugarRonda(respuestaJugador, RESPUESTAPC);
+    alert(RESULTADO === 'Empate' ? 'Uff, eligieron lo mismo' : RESULTADO === 'Ganar' ? 'Zarpado, quién te conoce Cortana!' : 'Perdiste, sorry');
+
+    actualizarResultado(RESULTADO);
+    alert('Puntaje: Jugador: ' + puntajeJugador + ' | PC: ' + puntajePc);
 }
 
-jugar();
+// Cómo termina el partido
+if (puntajeJugador > puntajePc) {
+    alert('Si Siri estuviese acá, te cantaría una serenata. Ganaste!');
+} else if (puntajeJugador === puntajePc) {
+    alert('Deportivo empate.');
+} else {
+    alert('Estemm, te ganó la máquina');
+}
+
+// Vovler a jugar sin refrescar la página. 
+if (confirm('¿Hacemos otra vuelta?')) {
+    jugar();
+} else {
+    alert('Gracias por jugar, nos vemos prontos.');
+}
