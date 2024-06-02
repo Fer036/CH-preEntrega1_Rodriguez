@@ -12,14 +12,20 @@ let rachasPerdidas = 0;
 let resultado;
 let continuar = true;
 
+// Esta función genera un número aleatorio:
+function generarNumeroAleatorio() {
+    return Math.round(Math.random() * (NUMERO_MAYOR - NUMERO_MENOR + 1)) + NUMERO_MENOR;
+}
 
 while (continuar) {
     let victorias = 0;
     let perdidas = 0;
+    // Array vacío para almacenar los resultados:
+    let resultadoRondas = [];
 
     for (let i = 1; i <= RONDAS; i++) {
         // Genero el número aleatorio:
-        numeroActual = Math.floor(Math.random() * NUMERO_MAYOR) + NUMERO_MENOR;
+        numeroActual = generarNumeroAleatorio();
         alert('Ronda: ' + i + '. Número aleatorio: ' + numeroActual);
 
         // Pedirle que adivine si el próximo número será mayor o menor que el actual:
@@ -31,7 +37,7 @@ while (continuar) {
         }
 
         // Muestro el número:
-        siguienteNumero = Math.floor(Math.random() * NUMERO_MAYOR) + NUMERO_MENOR;
+        siguienteNumero = generarNumeroAleatorio();
         alert('El número es: ' + siguienteNumero);
 
         // Resultado:
@@ -49,19 +55,25 @@ while (continuar) {
             victorias++;
             rachasPerdidas = 0;
             rachasGanadas++;
+            resultadoRondas.push('Victoria');
         } else if (resultado === 'igual') {
             alert('Cuack, eran el mismo. Penal para talleres.');
+            resultadoRondas.push('Empate');
         } else {
             alert('Seguí participando');
             perdidas++;
             rachasGanadas = 0;
             rachasPerdidas++;
+            resultadoRondas.push('Perdida');
         }
     }
 
     // Muestro el global:
     alert('Resultados: Adivinaste: ' + victorias + ' Perdiste: ' + perdidas);
     alert('Mejor racha: ' + rachasGanadas + ' Peor racha: ' + rachasPerdidas);
+
+    // Muestro el resultado de las rondas:
+    alert('Resultado rondas: ' + resultadoRondas.join(', '));
 
     // Preguntar si quiere volver a jugar:
     continuar = confirm('¿Jugamos otro o arrugas?');
